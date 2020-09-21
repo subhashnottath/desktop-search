@@ -31,16 +31,10 @@ function loadTableData(results) {
     var i = 1;
     results.forEach(result => {
         let row0 = table.insertRow();
-        let fileLink = row0.insertCell(0);
-        var fileLinkData = "<h4> <a href=\"file:///" + result.file + "\" target=_blank>" + result.file + "</a></h4>";
-        fileLink.innerHTML = fileLinkData;
-        let row1 = table.insertRow();
-        let fileMeta = row1.insertCell(0);
-        var fileMetaData = "<h5> Meta - " + result.contentType + "&nbsp;&nbsp;" + result.contentLength + "</h5>"
-        fileMeta.innerHTML = fileMetaData;
-        let row2 = table.insertRow();
-        let fileSummary = row2.insertCell(0);
-        fileSummary.innerHTML = result.summary;
+        let resultRow = row0.insertCell(0);
+        var fileLinkData = "<h3> <a href=\"file:///" + result.file + "\" target=_blank>" + result.file + "</a></h3>";
+        var fileMetaData = "<b>Type - " + result.contentType + "&nbsp;&nbsp; Size - " + result.contentLength + "</b>";
+        resultRow.innerHTML = fileLinkData + result.summary + "<br><br>" +  fileMetaData;
         i++;
     });
 }
