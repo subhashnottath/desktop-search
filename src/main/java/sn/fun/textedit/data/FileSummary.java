@@ -9,7 +9,7 @@ import org.apache.tika.metadata.Metadata;
 public class FileSummary {
     private final String file;
     private final String contentType;
-    private final String contentLength;
+    private final long contentLength;
     @JsonIgnore
     private final String content;
     private final String summary;
@@ -17,7 +17,11 @@ public class FileSummary {
     public FileSummary(String filePath, Metadata metadata, String content) {
         file = filePath;
         contentType = metadata.get("Content-Type");
-        contentLength = metadata.get("Content-Length");
+        long contentLength = -1;
+        try {
+            contentLength = Long.parseLong(metadata.get("Content-Length"));
+        } catch (NumberFormatException ignored) {}
+        this.contentLength = contentLength;
         this.content = content;
         if (content.length() > 0) {
             summary = summary(content);
@@ -29,7 +33,7 @@ public class FileSummary {
     public FileSummary(String filePath) {
         file = filePath;
         contentType = "Unknown";
-        contentLength = "Unknown";
+        contentLength = -1;
         content = "";
         summary = "Unknown";
     }
@@ -37,7 +41,11 @@ public class FileSummary {
     public FileSummary(Document document) {
         file = document.get("file");
         contentType = document.get("type");
-        contentLength = document.get("length");
+        long contentLength = -1;
+        try {
+            contentLength = document.getField("length").numericValue().longValue();
+        } catch (NumberFormatException ignored) {}
+        this.contentLength = contentLength;
         content = document.get("content");
         summary = document.get("summary");
     }

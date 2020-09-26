@@ -5,7 +5,7 @@
     <title>Desktop Search</title>
     <style>
         .center {
-            width:50%;
+            width:60%;
             margin-left:auto;
             margin-right:auto;
         }
@@ -21,43 +21,15 @@
 <body>
     <table class="center">
         <tr>
-            <td style="width:50%">
-                <input style="float: right" type="text" id="query" name="query" onkeypress="handleKeyPress(event)"/>
+            <td style="width:75%">
+                <input style="width:100%; float: right" type="text" id="query" name="query" onkeypress="handleKeyPress(event)"/>
             </td>
-            <td style="width:50%">
-                <input type="button" value="Lookup" onclick="search()"/>
+            <td style="width:25%">
+                <input type="button" value="Search" onclick="search()"/>
             </td>
         </tr>
      </table>
     <table id="responseTable" class="resTable">
-        <tr>
-            <td>
-                Hello
-                <br>
-                World
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Hello
-                <br>
-                World
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Hello
-                <br>
-                World
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Hello
-                <br>
-                World
-            </td>
-        </tr>
     </table>
 <script src="search.js"></script>
 </body>
