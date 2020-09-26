@@ -8,8 +8,6 @@ import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.FileSystemUtils;
-import sn.fun.textedit.algos.FileIndexer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,8 +24,9 @@ public class SpringConfig {
     @Bean
     Directory index(@Value("${FileIndexer.indexPath}") String indexPath) throws IOException {
         Path path = Paths.get(indexPath);
-        FileSystemUtils.deleteRecursively(path);
-        path = Files.createDirectories(path);
+        if (!Files.exists(path)) {
+            path = Files.createDirectories(path);
+        }
         return new MMapDirectory(path);
     }
 

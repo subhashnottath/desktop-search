@@ -5,6 +5,7 @@
 1. HTML Based UI
 2. Search using Apache Lucene
 3. Content parsing using Apache Tika
+4. Index auto update using WatchService 
 
 ### Technologies used
 
